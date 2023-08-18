@@ -1,0 +1,6 @@
+@inproceedings{shacira,
+title={SHACIRA: Scalable HAsh-grid Compression for Implicit Neural Representations}, 
+author={Girish, Sharath and Shrivastava, Abhinav  and Gupta, Kamal}
+year={2023},
+booktitle={Proceedings of the IEEE/CVF International Conference on Computer Vision (ICCV)}
+}
