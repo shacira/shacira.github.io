@@ -1,365 +1,389 @@
-<script src="http://www.google.com/jsapi" type="text/javascript"></script> 
-<script type="text/javascript">google.load("jquery", "1.3.2");</script>
-
-<style type="text/css">
-	body {
-		font-family: "HelveticaNeue-Light", "Helvetica Neue Light", "Helvetica Neue", Helvetica, Arial, "Lucida Grande", sans-serif; 
-		font-weight:300;
-		font-size:18px;
-		margin-left: auto;
-		margin-right: auto;
-		width: 1100px;
-	}
-	
-	h1 {
-		font-size:32px;
-		font-weight:300;
-	}
-	
-	.disclaimerbox {
-		background-color: #eee;		
-		border: 1px solid #eeeeee;
-		border-radius: 10px ;
-		-moz-border-radius: 10px ;
-		-webkit-border-radius: 10px ;
-		padding: 20px;
-	}
-
-	video.header-vid {
-		height: 140px;
-		border: 1px solid black;
-		border-radius: 10px ;
-		-moz-border-radius: 10px ;
-		-webkit-border-radius: 10px ;
-	}
-	
-	img.header-img {
-		height: 140px;
-		border: 1px solid black;
-		border-radius: 10px ;
-		-moz-border-radius: 10px ;
-		-webkit-border-radius: 10px ;
-	}
-	
-	img.rounded {
-		border: 1px solid #eeeeee;
-		border-radius: 10px ;
-		-moz-border-radius: 10px ;
-		-webkit-border-radius: 10px ;
-	}
-	
-	a:link,a:visited
-	{
-		color: #1367a7;
-		text-decoration: none;
-	}
-	a:hover {
-		color: #208799;
-	}
-	
-	td.dl-link {
-		height: 160px;
-		text-align: center;
-		font-size: 22px;
-	}
-	
-	.layered-paper-big { /* modified from: http://css-tricks.com/snippets/css/layered-paper/ */
-		box-shadow:
-		0px 0px 1px 1px rgba(0,0,0,0.35), /* The top layer shadow */
-		5px 5px 0 0px #fff, /* The second layer */
-		5px 5px 1px 1px rgba(0,0,0,0.35), /* The second layer shadow */
-		10px 10px 0 0px #fff, /* The third layer */
-		10px 10px 1px 1px rgba(0,0,0,0.35), /* The third layer shadow */
-		15px 15px 0 0px #fff, /* The fourth layer */
-		15px 15px 1px 1px rgba(0,0,0,0.35), /* The fourth layer shadow */
-		20px 20px 0 0px #fff, /* The fifth layer */
-		20px 20px 1px 1px rgba(0,0,0,0.35), /* The fifth layer shadow */
-		25px 25px 0 0px #fff, /* The fifth layer */
-		25px 25px 1px 1px rgba(0,0,0,0.35); /* The fifth layer shadow */
-		margin-left: 10px;
-		margin-right: 45px;
-	}
-
-	.paper-big { /* modified from: http://css-tricks.com/snippets/css/layered-paper/ */
-		box-shadow:
-		0px 0px 1px 1px rgba(0,0,0,0.35); /* The top layer shadow */
-
-		margin-left: 10px;
-		margin-right: 45px;
-	}
-
-
-	.layered-paper { /* modified from: http://css-tricks.com/snippets/css/layered-paper/ */
-		box-shadow:
-		0px 0px 1px 1px rgba(0,0,0,0.35), /* The top layer shadow */
-		5px 5px 0 0px #fff, /* The second layer */
-		5px 5px 1px 1px rgba(0,0,0,0.35), /* The second layer shadow */
-		10px 10px 0 0px #fff, /* The third layer */
-		10px 10px 1px 1px rgba(0,0,0,0.35); /* The third layer shadow */
-		margin-top: 5px;
-		margin-left: 10px;
-		margin-right: 30px;
-		margin-bottom: 5px;
-	}
-	
-	.vert-cent {
-		position: relative;
-		top: 50%;
-		transform: translateY(-50%);
-	}
-	
-	hr
-	{
-		border: 0;
-		height: 1px;
-		background-image: linear-gradient(to right, rgba(0, 0, 0, 0), rgba(0, 0, 0, 0.75), rgba(0, 0, 0, 0));
-	}
-</style>
-
+<!DOCTYPE html>
 <html>
 <head>
-	<title>SHACIRA</title>
-	<link rel="icon" type="image/x-icon" href="./resources/shacira.png">
-	<meta property="og:image" content="resources/Teaser_v2.png"/> <!-- Facebook automatically scrapes this. Go to https://developers.facebook.com/tools/debug/ if you update and want to force Facebook to rescrape. -->
-	<meta property="og:title" content="SHACIRA: Scalable HAsh-grid Compression for Implicit Neural Representations" />
-	<meta property="og:description" content="Paper description." />
+  <meta charset="utf-8">
+  <meta name="description"
+        content="SHACIRA: Scalable HAsh-grid Compression for Implicit Neural Representations">
+  <meta name="keywords" content="Nerf, Compression, Images, Videos, Implicit, Neural representations">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>SHACIRA: Scalable HAsh-grid Compression for Implicit Neural Representations</title>
 
-	<!-- Get from Google Analytics -->
-	<!-- Global site tag (gtag.js) - Google Analytics -->
-	<script async src=""></script> 
-	<script>
-		window.dataLayer = window.dataLayer || [];
-		function gtag(){dataLayer.push(arguments);}
-		gtag('js', new Date());
+  <!-- Global site tag (gtag.js) - Google Analytics -->
+  <script async src="https://www.googletagmanager.com/gtag/js?id="></script>
+  <script>
+    window.dataLayer = window.dataLayer || [];
 
-		gtag('config', 'UA-75863369-6');
-	</script>
+    function gtag() {
+      dataLayer.push(arguments);
+    }
+
+    gtag('js', new Date());
+
+    gtag('config', '');
+  </script>
+
+  <link href="https://fonts.googleapis.com/css?family=Google+Sans|Noto+Sans|Castoro"
+        rel="stylesheet">
+
+  <link rel="stylesheet" href="./static/css/bulma.min.css">
+  <link rel="stylesheet" href="./static/css/bulma-carousel.min.css">
+  <link rel="stylesheet" href="./static/css/bulma-slider.min.css">
+  <link rel="stylesheet" href="./static/css/fontawesome.all.min.css">
+  <link rel="stylesheet"
+        href="https://cdn.jsdelivr.net/gh/jpswalsh/academicons@1/css/academicons.min.css">
+  <link rel="stylesheet" href="./static/css/index.css">
+  <link rel="icon" href="./resources/favicon.png">
+
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+  <script defer src="./static/js/fontawesome.all.min.js"></script>
+  <script src="./static/js/bulma-carousel.min.js"></script>
+  <script src="./static/js/bulma-slider.min.js"></script>
+  <script src="./static/js/index.js"></script>
+</head>
+<body>
+
+<nav class="navbar" role="navigation" aria-label="main navigation">
+  <div class="navbar-brand">
+    <a role="button" class="navbar-burger" aria-label="menu" aria-expanded="false">
+      <span aria-hidden="true"></span>
+      <span aria-hidden="true"></span>
+      <span aria-hidden="true"></span>
+    </a>
+  </div>
+</nav>
+
+<head>
+    <style>
+        .figure {
+            float: left; 
+            margin-right: 20px; 
+            padding-left: 40px;
+            padding-right: 80px;
+        }
+
+    </style>
 </head>
 
-<body>
-	<br>
-	<center>
-		<span style="font-size:36px">SHACIRA: Scalable HAsh-grid Compression for Implicit Neural Representations</span>
+<section class="hero">
+  <div class="hero-body">
+    <div class="container is-max-desktop">
+      <div class="columns is-centered">
+        <div class="column has-text-centered">
+          <h1 class="title is-1 publication-title"> SHACIRA: Scalable HAsh-grid Compression for Implicit Neural Representations</h1>
+          <div class="is-size-5 publication-authors">
+            <span class="author-block">
+				<a href="https://sharath-girish.github.io/">Sharath Girish</a>
+				&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+				<a href="https://www.cs.umd.edu/~abhinav">Abhinav Shrivastava</a>
+				&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+				<a href="https://kampta.github.io">Kamal Gupta</a>
+			</span>
+			  <!-- <span class="author-block">
+				<span class="author-block">
+				  <a href="https://www.cs.umd.edu/~abhinav">Abhinav Shrivastava</a>,
+				</span>
+				<a href="https://kampta.github.io">Kamal Gupta</a>,</span>
+			  <span class="author-block"> -->
+          </div>
+
+          <div class="is-size-5 publication-authors">
+            <span class="author-block">University of Maryland, College Park</span>
+          </div>
 		<br>
-		<span style="font-size:30px">ICCV 2023</span>
-		<br><br>
-		<table align=center width=750px>
-			<table align=center width=750px>
-				<tr>
-					<td align=center width=150px>
-						<center>
-							<span style="font-size:24px"><a href="https://sharath-girish.github.io/">Sharath Girish</a></span>
-						</center>
-					</td>
-					<td align=center width=210px>
-						<center>
-							<span style="font-size:24px"><a href="https://www.cs.umd.edu/~abhinav/">Abhinav Shrivastava</a></span>
-						</center>
-					</td>
-					<td align=center width=150px>
-						<center>
-							<span style="font-size:24px"><a href="https://kampta.github.io/">Kamal Gupta</a></span>
-						</center>
-					</td>
-				</tr>
-			</table>
-			<span style="font-size:20px">University of Maryland, College Park</span>
-			<br><br>
-			<table align=center width=580px>
-				<tr>
-					<td align=center width=120px>
-						<center>
-							<span style="font-size:24px"><a href='https://www.dropbox.com/e/scl/fi/dttm7p6h4mt518h4c15x1/HashCompression_ICCV2023.pdf?dl=0&rlkey=0ui9bkamhyn04pg7sdixzqyda'>[Paper]</a></span>
-						</center>
-					</td>
-					<td align=center width=120px>
-					<center>
-						<span style="font-size:24px"><a href='http://shacira.github.io'>[Code (Coming soon)]</a></span>
-					</center>
-					</td>
-					<!-- <td align=center width=120px>
-						<center>
-							<span style="font-size:24px"><a href='https://arxiv.org/abs/2204.02965'>[arXiv]</a></span><br>
-						</center>
-					</td>
-					<td align=center width=120px>
-						<center>
-							<span style="font-size:24px"><a href='https://github.com/Sharath-girish/LilNetX'>[GitHub]</a></span><br>
-						</center>
-					</td>
-					<td align=center width=120px>
-						<center>
-							<span style="font-size:24px"><a href='https://youtu.be/RD9aTiqGchM'>[Video]</a></span><br>
-						</center>
-					</td>
-					<td align=center width=120px>
-						<center>
-							<span style="font-size:24px"><a href='https://www.dropbox.com/scl/fi/bfta9fmm2jfaggzebiur3/LilNetX.pptx?dl=0&rlkey=jwnb0fopnov25chff17ejfo84'>[Slides]</a></span><br>
-						</center>
-					</td>
-					<td align=center width=120px>
-						<center>
-							<span style="font-size:24px"><a href='https://www.dropbox.com/s/foasj8g7bcktjn4/LilNetX%20Poster.pdf?dl=0'>[Poster]</a></span><br>
-						</center>
-					</td> -->
-				</tr>
-			</table>
-		</table>
-	</center>
+          <div class="is-size-5 publication-authors">
+            <span class="author-block">ICCV 2023</span>
+          </div>
 
-	<center>
-		<table align=center width=750px>
-			<tr>
-				<td width=750px>
-					<center>
-						<img class="round" style="width:750px" src="./resources/Lego-teaser-two-col.png"/>
-					</center>
-				</td>
-			</tr>
-		</table>
-		<table align=center width=850px>
-			<tr>
-				<td>
-					We introduce an <b>end-to-end compression framework for feature-grid INRs</b> achieving data compression for
-					various domains such as images, videos, NeRFs. We demonstrate the effectiveness of SHACIRA for two tasks. 
-					The top row shows a gigapixel image at $21450 \times 56718$ resolution (cropped for visualization) encoded 
-					using <a href="https://nvlabs.github.io/instant-ngp/">Instant-NGP</a>, JPEG, 
-					and ours (SHACIRA). The bottom row reconstructs NeRF from 2D images and their camera poses using 
-					Instant-NGP, <a href="https://nv-tlabs.github.io/vqad/">VQAD</a>, and ours. For each example, 
-					we zoom into two crops to compare different methods. We show overall PSNR and size required by each method. 
-					Our method can capture <b>high-resolution details with a smaller storage size in a task-agnostic way</b>
-					(only 2D/3D examples shown here).
+          <div class="column has-text-centered">
+            <div class="publication-links">
+              <!-- PDF Link. -->
+              <span class="link-block">
+                <a href="https://openaccess.thecvf.com/content/ICCV2023/papers/Girish_SHACIRA_Scalable_HAsh-grid_Compression_for_Implicit_Neural_Representations_ICCV_2023_paper.pdf"
+                   class="external-link button is-normal is-rounded is-dark">
+                  <span class="icon">
+                      <i class="fas fa-file-pdf"></i>
+                  </span>
+                  <span>Paper</span>
+                </a>
+              </span>
 
-				</td>
-			</tr>
-		</table>
-	</center>
+              <!-- Code Link. -->
+              <span class="link-block">
+                <a href="https://github.com/Sharath-girish/Shacira"
+                   class="external-link button is-normal is-rounded is-dark">
+                  <span class="icon">
+                      <i class="fab fa-github"></i>
+                  </span>
+                  <span>Code</span>
+                  </a>
+              </span>
+              
+              <!-- Poster Link. -->
+              <span class="link-block">
+                <a href="https://www.dropbox.com/scl/fi/07zcx1abnpucjccsth1vy/Poster_Shacira_ICCV2023.pdf?rlkey=7iub05faiejz6ofhikrnochb3&dl=0"
+                   class="external-link button is-normal is-rounded is-dark">
+                  <span class="icon">
+                      <i class="fas fa-file-pdf"></i>
+                  </span>
+                  <span>Poster</span>
+                  </a>
+              </span>
+              <!-- Video Link. -->
+              <span class="link-block">
+                <a href="https://youtu.be/zRr9ZqlmSzY"
+                   class="external-link button is-normal is-rounded is-dark">
+                  <span class="icon">
+                      <i class="fa fa-video"></i>
+                  </span>
+                  <span>Video</span>
+                  </a>
+              </span>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
 
-	<hr>
+<section class="hero teaser">
+  <div class="container is-max-desktop is-small">
+    <div class="hero-body">
+        <img src="./resources/Lego-teaser-two-col.png"
+             class="image-nerf"
+             alt="Image nerf compression">
+      <h2 class="content has-text-justified">
+        We introduce an <b>end-to-end compression framework for feature-grid INRs</b> achieving data compression for
+		various domains such as images, videos, NeRFs. We demonstrate the effectiveness of SHACIRA for two tasks. 
+		The top row reconstructs NeRF from 2D images and their camera poses using 
+		<a href="https://nvlabs.github.io/instant-ngp/">Instant-NGP</a>, 
+		<a href="https://nv-tlabs.github.io/vqad/">VQAD</a>, and ours. The bottom row shows a <i>gigapixel image</i> at 
+		21450x56718 resolution (cropped for visualization) encoded using 
+		Instant-NGP, JPEG, and ours (SHACIRA). For each example, 
+		we zoom into two crops to compare different methods. We show overall PSNR and size required by each method. 
+		Our method can capture <b>high-resolution details with a smaller storage size in a task-agnostic way</b>
+		(only 2D/3D examples shown here).
+		</h2>
+    </div>
+  </div>
+</section>
 
-	<table align=center width=850px>
-		<center><h1>Abstract</h1></center>
-		<tr>
-			<td>
-				Implicit Neural Representations (INR) or neural fields have emerged as a popular framework 
-				to encode multimedia signals such as images and radiance fields while retaining high-quality.
- 				Recently, learnable feature grids (Instant-NGP) have allowed significant speed-up in the training 
-				as well as the sampling of INRs by replacing a large neural network with a multi-resolution look-up 
-				table of feature vectors and a much smaller neural network. However, these feature grids come at the 
-				expense of large memory consumption which can be a bottleneck for storage and streaming applications.
-  				In this work, we propose SHACIRA, a simple yet effective task-agnostic framework for compressing such 
-				feature grids with no additional post-hoc pruning/quantization stages. We reparameterize feature grids 
-				with quantized latent weights and apply entropy regularization in the latent space to achieve high levels 
-				of compression across various domains. Quantitative and qualitative results on diverse datasets 
-				consisting of images, videos, and radiance fields, show that our approach outperforms existing 
-				INR approaches without the need for any large datasets or domain-specific heuristics.
-			</td>
-		</tr>
-	</table>
 
-	<hr>
-	<table align=center width=850px>
-		<center><h1>Approach</h1></center>
+<section class="section">
+  <div class="container is-max-desktop">
+    <!-- Abstract. -->
+    <div class="columns is-centered has-text-centered">
+      <div class="column is-four-fifths">
+        <h2 class="title is-3">Abstract</h2>
+        <div class="content has-text-justified">
+		<p>
+		Implicit Neural Representations (INR) or neural fields have emerged as a popular framework 
+		to encode multimedia signals such as images and radiance fields while retaining high-quality.
+		</p>
+		<p>Recently, learnable feature grids (Instant-NGP) have allowed significant speed-up in the training 
+		as well as the sampling of INRs by replacing a large neural network with a multi-resolution look-up 
+		table of feature vectors and a much smaller neural network. However, these feature grids come at the 
+		expense of large memory consumption which can be a bottleneck for storage and streaming applications.
+		</p>
+		<p>In this work, we propose SHACIRA, a simple yet effective task-agnostic framework for compressing such 
+		feature grids with no additional post-hoc pruning/quantization stages. We reparameterize feature grids 
+		with quantized latent weights and apply entropy regularization in the latent space to achieve high levels 
+		of compression across various domains. Quantitative and qualitative results on diverse datasets 
+		consisting of images, videos, and radiance fields, show that our approach outperforms existing 
+		INR approaches without the need for any large datasets or domain-specific heuristics.
+		</p>
+		</div>
+      </div>
+    </div>
+    <!--/ Abstract. -->
+  </div>
+</section>
 
-		<tr>
-			<td width=850px>
-				<center>
-					<img class="round" style="width:800px" src="./resources/approach_v2.png"/>
-				</center>
-			</td>
-		</tr>
-		<tr>
-			<td>
-				Our approach maintains <b>quantized latent representations of the feature grid</b> which 
-				consists of a hierarchy representing coarse-to-fine resolutions of the signal. 
-				The hierarchical latents are passed through a decoder to obtain continuous feature vectors. 
-				The feature vectors at different levels are then concatenated and passed through an MLP
-				to obtain the output signal which can be images, videos, NeRFs, and so on.
-			</td>
-		</tr>
-		
-	</table>
 
-	<table align=center width=850px>
-		<center><h1>Results</h1></center>
+<section class="section">
+	<div class="container is-max-desktop has-text-centered">
+	  <h2 class="title is-3">Approach</h2>
+	  <div class="item approach">
+		<img src="./resources/approach_v2.png"
+		   class="approach"
+		   alt="Approach.">
+	  </div>
+	  <h2 class="content has-text-justified">
+		Our approach maintains <b>quantized latent representations of the feature grid</b> which 
+		consists of a hierarchy representing coarse-to-fine resolutions of the signal. 
+		The hierarchical latents are passed through a decoder to obtain continuous feature vectors. 
+		The feature vectors at different levels are then concatenated and passed through an MLP
+		to obtain the output signal which can be images, videos, NeRFs, and so on.
+		</h2>
+	</div>
+  </section>
 
-		<tr>
-			<td width=850px>
-				<center>
-					<img class="round" style="width:850px" src="./resources/cosmic.png"/>
-				</center>
-			</td>
-		</tr>
-		<tr>
-			<td>
-				We scale well to higher resolution images obtaining similar PSNR and reconstruction quality as 
-				Instant-NGP while 6 times smaller. <a href="https://www.vincentsitzmann.com/siren/">SIREN</a>  
-				fails to fit high frequency information leading to blurry patches as seen. 
-				JPEG on the other hand suffers from blocking artifacts and discoloration leading to drop in reconstruction 
-				quality.
-			</td>
-		</tr>
-		<tr>
-			<td width=850px>
-				<center>
-					<img class="round" style="width:800px" src="./resources/V8.png"/>
-				</center>
-			</td>
-		</tr>
-		<tr>
-			<td>
-				We obtain better reconstructions for NeRF scenes preserving much finer detail than VQAD while being visually
-				similar to Instant=NGP and being 60x smaller.
-			</td>
-		</tr>
-		
-	</table>
-	<br>
-	<hr>
 
-	<table align=center width=850px>
-		<center><h1>Progressive inference-time streaming</h1></center>
+  <section class="section">
+	<div class="container is-max-desktop has-text-centered">
+	  <h2 class="title is-3">NeRF compression</h2>
 
-		<tr>
-			<td width=850px>
-				<center>
-					<img class="round" style="width:800px" src="./resources/streaming_lod_5.png"/>
-				</center>
-			</td>
-		</tr>
-		<tr>
-			<td>
-				The hierarchical nature of feature-grid based INRs allows for progressive streaming of the scene. 
-				Even for our latent-based approach, transmitting only coarse resolution latents at inference time
-				leads to a coarse scene requiring fewer bits to transmit. Finer details can be captured with the 
-				finer resolution latents. This can be useful in streaming scenarios with varying level of detail.
-			</td>
-		</tr>
-		
-	</table>
+	  <div class="item v8">
+		<img src="./resources/V8.png"
+		   class="v8"
+		   alt="V8">
+	  </div>
+	  <h2 class="content has-text-justified">
+		On the V8 NeRF scene from the 
+		<a href="https://www.cs.umd.edu/~mmeshry/projects/rtmv/">RTMV dataset</a>, 
+		we obtain better reconstructions, preserving much finer detail than VQAD 
+		while being visually similar to Instant-NGP with a small drop in PSNR 
+		but being 60x smaller.
+	  </h2>
+	</div>
+  </section>
 
-	<table align=center width=600px>
-		<tr>
-			<td><span style="font-size:14pt"><center>
-				<a href="./resources/bibtex.txt">[Bibtex]</a>
-			</center></td>
-		</tr>
-	</table>
+  <section class="section">
+	<div class="container is-max-desktop has-text-centered">
+	  <h2 class="title is-3">Image compression</h2>
 
-	<hr>
-	<br>
+	  <div class="item smacs">
+		<img src="./resources/smacs.png"
+		   class="smacs"
+		   alt="Smacs">
+	  </div>
+	  <h2 class="content has-text-justified">
+		We significantly outperform JPEG in the low BPP regime (~+6dB) while
+		still being 3x smaller in terms of storage. JPEG results in lots of artifacts 
+		and a reduced color palette due to extremely low quality factor levels.
+	  </h2>
 
-	<table align=center width=900px>
-		<tr>
-			<td width=400px>
-				<left>
-					<center><h1>Acknowledgements</h1></center>
-					This template was originally made by <a href="http://web.mit.edu/phillipi/">Phillip Isola</a> and <a href="http://richzhang.github.io/">Richard Zhang</a> for a <a href="http://richzhang.github.io/colorization/">colorful</a> ECCV project; the code can be found <a href="https://github.com/richzhang/webpage-template">here</a>.
-				</left>
-			</td>
-		</tr>
-	</table>
+	  <div class="item cosmic">
+		<img src="./resources/cosmic.png"
+		   class="cosmic"
+		   alt="Cosmic">
+	  </div>
+	  <h2 class="content has-text-justified">
+		We scale well to higher resolution images obtaining similar PSNR and reconstruction quality as 
+		Instant-NGP while 6 times smaller. <a href="https://www.vincentsitzmann.com/siren/">SIREN</a>  
+		fails to fit high frequency information leading to blurry patches as seen. 
+		JPEG on the other hand suffers from blocking artifacts and discoloration leading to drop in reconstruction 
+		quality.
+	  </h2>
+	  <div class="item pearl">
+		<img src="./resources/pearl.png"
+		   class="pearl"
+		   alt="Pearl">
+	  </div>
+	  <h2 class="content has-text-justified">
+		Unlike prior INR works, we continue to scale to even higher image resolutions
+		(even reaching gigapixel levels as shown above) preserving the fine details 
+		as Instant-NGP while being almost 9 times smaller. JPEG continues to exhibit 
+		discoloration artifacts and color leakage.
+	  </h2>
+	</div>
+  </section>
 
-<br>
+  <section class="section">
+	<div class="container is-max-desktop has-text-centered">
+	  <h2 class="title is-3">Progressive inference-time streaming</h2>
+
+	  <div class="item streaming">
+		<img src="./resources/streaming_lod_5.png"
+		   class="streaming"
+		   alt="Streaming">
+	  </div>
+	  <h2 class="content has-text-justified">
+		The hierarchical nature of feature-grid based INRs allows for progressive 
+		streaming of the scene. For our latent-based approach, transmitting 
+		only coarse resolution latents at inference time leads to a coarse scene 
+		requiring fewer bits to transmit. Finer details are captured with the 
+		finer resolution latents. This can be useful in streaming scenarios with 
+		varying level of detail.
+	  </h2>
+	</div>
+  </section>
+
+  <section class="section">
+	<div class="container is-max-desktop has-text-centered">
+	  <h2 class="title is-3">Training speed</h2>
+	  
+	<body>
+		<div class="figure">
+			<img src="./resources/convergence.png" alt="convergence" width="500px">
+		</div>
+
+		<h2 class="content has-text-justified">
+			We compare the convergence speed of our feature-grid approach with traditional
+			INR approaches such as 
+			<a href="https://arxiv.org/abs/2112.04267">Strumpler et al.</a>
+			We obtain higher PSNR at a much faster rate than at a similar BPP 
+			range (hue value in color bar). Their PSNR remains stagnant 
+			at 32.5dB. In contrast, our approach achieves this PSNR and BPP (0.85) 
+			within just 53s achieving more than a <b>10x speedup</b> in convergence. 
+			Additionally, we achieve higher PSNR with longer encoding times reaching 
+			34dB in 430s while maintaining a similar BPP (0.87).
+		</h2>
+		<br>
+
+	</body>
+
+	</div>
+  </section>
+
+<section class="section">
+  <div class="container is-max-desktop has-text-centered">
+    <h2 class="title is-3">Video</h2>
+<p align="center">
+  <iframe width="660" height="395" src="https://youtu.be/zRr9ZqlmSzY" frameborder="0" allow="autoplay; encrypted-media" allowfullscreen align="center"></iframe>
+</p>
+</div>
+</section>
+
+<section class="section" id="BibTeX">
+  <div class="container is-max-desktop content">
+    <h2 class="title">BibTeX</h2>
+    <pre><code>@InProceedings{Girish_2023_ICCV,
+      author    = {Girish, Sharath and Shrivastava, Abhinav and Gupta, Kamal},
+      title     = {SHACIRA: Scalable HAsh-grid Compression for Implicit Neural Representations},
+      booktitle = {Proceedings of the IEEE/CVF International Conference on Computer Vision (ICCV)},
+      month     = {October},
+      year      = {2023},
+      pages     = {17513-17524}
+  }</code></pre>
+  </div>
+</section>
+
+
+<footer class="footer">
+  <div class="container">
+    <div class="content has-text-centered">
+      <span class="link-block">
+        <a href="https://www.dropbox.com/e/scl/fi/dttm7p6h4mt518h4c15x1/HashCompression_ICCV2023.pdf?dl=0&rlkey=0ui9bkamhyn04pg7sdixzqyda"
+           class="external-link button is-normal is-rounded is-dark">
+          <span class="icon">
+              <i class="fas fa-file-pdf"></i>
+          </span>
+          <span>Paper</span>
+        </a>
+      </span>
+      <!-- Code Link. -->
+      <span class="link-block">
+        <a href=""
+           class="external-link button is-normal is-rounded is-dark">
+          <span class="icon">
+              <i class="fab fa-github"></i>
+          </span>
+          <span>Code (Coming Soon)</span>
+          </a>
+      </span>
+
+    </div>
+    <div class="columns is-centered">
+      <div class="column is-4">
+        <div class="content">
+            Template borrowed from awesome <a
+            href="https://github.com/nerfies/nerfies.github.io">Nerfies</a> website.
+        </div>
+      </div>
+    </div>
+  </div>
+</footer>
+
 </body>
 </html>
